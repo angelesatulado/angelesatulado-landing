@@ -1,0 +1,8 @@
+{
+  "name": "Ángeles a tu Lado - Cuidado Médico en RD",
+  "description": "Atención médica y cuidado especializado para adultos mayores en Santo Domingo. Profesionales que llevan salud y calidez a tu hogar.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone"
+  ]
+}
