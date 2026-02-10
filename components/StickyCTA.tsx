@@ -1,7 +1,38 @@
-import React from 'react';
+"use client"; // Add this line
+
+import React, { useEffect } from 'react';
 
 const StickyCTA: React.FC = () => {
-  return (
+useEffect(() => {
+  const trackLeadEvent = (source: string) => {
+    if (window.fbq) {
+      window.fbq("track", "Lead", {
+        source,
+        page: "landing",
+      });
+    }
+  };
+
+  const agendaButtons = document.querySelectorAll('a[href="#agenda"]');
+  agendaButtons.forEach(btn =>
+    btn.addEventListener("click", () => trackLeadEvent("agenda_cta"))
+  );
+
+  const phoneButtons = document.querySelectorAll('a[href^="tel:"]');
+  phoneButtons.forEach(btn =>
+    btn.addEventListener("click", () => trackLeadEvent("phone_cta"))
+  );
+
+  return () => {
+    agendaButtons.forEach(btn =>
+      btn.replaceWith(btn.cloneNode(true))
+    );
+    phoneButtons.forEach(btn =>
+      btn.replaceWith(btn.cloneNode(true))
+    );
+  };
+}, []);
+ return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-xl border-t border-slate-100 z-[50] flex gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
       <a 
         href="tel:+18296193919" 

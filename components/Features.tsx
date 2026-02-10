@@ -1,8 +1,45 @@
 
-import React from 'react';
+"use client"; // Add this line
+
+import React, { useEffect, useRef } from 'react';
 import { FaCarSide, FaUserDoctor, FaPalette, FaHouse } from 'react-icons/fa6';
 
 const Features: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (typeof window !== "undefined" && window.fbq) {
+              window.fbq("track", "ViewContent", {
+                content_name: "Nuestros_Servicios",
+                content_category: "Servicios",
+              });
+            }
+            observer.unobserve(entry.target); // Stop observing after it intersects once
+          }
+        });
+      },
+      {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.5, // Trigger when 50% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const services = [
     {
       title: 'Acompañamiento Médico',
@@ -39,7 +76,7 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section id="servicios" className="py-24 bg-white px-4">
+    <section ref={sectionRef} id="servicios" className="py-24 bg-white px-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Nuestros Servicios</h2>

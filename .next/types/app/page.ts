@@ -1,4 +1,4 @@
-// File: C:\Users\Administrator\Desktop\Projects\angeles\ángeles-a-tu-lado---cuidado-médico-en-rd (1)\app\page.tsx
+// File: /run/media/atomic_dev25/SHARED/shared/C/Users/Administrator/Desktop/Projects/angeles/angelesatulado-landing/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

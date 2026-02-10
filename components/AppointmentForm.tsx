@@ -39,6 +39,9 @@ const AppointmentForm: React.FC = () => {
 
     setTimeout(() => {
       setIsSubmitting(false);
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq('track', 'CompleteRegistration');
+      }
       setSuccess(true);
       
       const whatsappNumber = '18296193919'; // Número de RD

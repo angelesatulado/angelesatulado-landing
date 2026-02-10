@@ -1,8 +1,8 @@
 
 import React from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
-import VideoSection from '../components/VideoSection';
+import Hero from '../components/Hero'; 
+import CarouselSection from '../components/CarouselSection.tsx';
 import Features from '../components/Features';
 import AppointmentForm from '../components/AppointmentForm';
 import Footer from '../components/Footer';
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
       <main className="pb-24 md:pb-0">
         <Hero />
         
-        <VideoSection />
+        <CarouselSection/>
         
         {/* Pilar 1: Transporte Médico */}
         <section id="como-funciona" className="py-24 bg-slate-50 px-4">

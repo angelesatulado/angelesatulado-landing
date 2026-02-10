@@ -1,7 +1,28 @@
 
-import React from 'react';
+"use client"; // Add this line
+
+import React, { useEffect } from 'react';
 
 const Hero: React.FC = () => {
+  useEffect(() => {
+    const trackLeadEvent = () => {
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", { content_name: "hero_button" });
+      }
+    };
+
+    const agendaButton = document.querySelector('a[href="#agenda"]');
+    if (agendaButton) {
+      agendaButton.addEventListener('click', trackLeadEvent);
+    }
+
+    return () => {
+      if (agendaButton) {
+        agendaButton.removeEventListener('click', trackLeadEvent);
+      }
+    };
+  }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
+
   return (
     <section className="relative pt-10 pb-16 lg:pt-20 lg:pb-28 overflow-hidden px-4">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
@@ -13,7 +34,7 @@ const Hero: React.FC = () => {
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-50 text-sky-700 font-bold text-xs mb-8 uppercase tracking-widest border border-sky-100 shadow-sm">
               <span className="flex h-2 w-2 rounded-full bg-sky-500 animate-ping"></span>
-              Servicio de Escolta Médica en Santo Domingo
+              Asistencia y Acompañamiento Médico
             </div>
             <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 leading-[1.05] tracking-tight">
               ¿No puedes llevarlo <br /> 
@@ -34,7 +55,7 @@ const Hero: React.FC = () => {
               </a>
               <div className="flex items-center gap-4 bg-white p-2 pr-6 rounded-full shadow-lg border border-slate-50">
                 <img className="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/100?u=doc1" alt="Personal" />
-                <span className="text-sm font-black text-slate-700">Enfermeras Certificadas</span>
+                <span className="text-sm font-black text-slate-700">Cuidadores capacitados</span>
               </div>
             </div>
           </div>
@@ -43,7 +64,7 @@ const Hero: React.FC = () => {
             <div className="relative z-10 rounded-[3.5rem] overflow-hidden shadow-4xl border-[10px] border-white transform rotate-1 hover:rotate-0 transition-transform duration-700">
               {/* Foto de transporte/asistencia (referencia 3ra foto) */}
               <img 
-                src="https://images.unsplash.com/photo-1573497620053-ea5310f94f17?auto=format&fit=crop&q=80&w=1000" 
+                src="https://res.cloudinary.com/dg8y3x4sn/image/upload/v1769803992/hero-section1_ykl22f.jpg"
                 alt="Servicio de acompañamiento médico Santo Domingo" 
                 className="w-full h-[450px] md:h-[550px] object-cover"
               />

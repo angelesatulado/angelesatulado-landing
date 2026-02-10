@@ -1,13 +1,46 @@
-
-"use client"; // Required for useState, useRef
-
-import React, { useState, useRef } from 'react';
+"use client"
+import React, { useState, useRef, useEffect } from 'react'; // Added useEffect
 
 const VideoSection: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const leftReflectionRef = useRef<HTMLVideoElement>(null); // Added useRef for left reflection
-  const rightReflectionRef = useRef<HTMLVideoElement>(null); // Added useRef for right reflection
+  const leftReflectionRef = useRef<HTMLVideoElement>(null);
+  const rightReflectionRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null); // Ref for the section to observe
+
+  // Intersection Observer for ViewContent
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (typeof window !== "undefined" && window.fbq) {
+              window.fbq("track", "ViewContent", {
+                content_name: "Video_Explicativo",
+                content_category: "Contenido_Multimedia",
+              });
+            }
+            observer.unobserve(entry.target); // Stop observing after it intersects once
+          }
+        });
+      },
+      {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.5, // Trigger when 50% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handlePlay = () => {
     if (videoRef.current && leftReflectionRef.current && rightReflectionRef.current) {
@@ -25,7 +58,7 @@ const VideoSection: React.FC = () => {
   };
 
   return (
-    <section id="como-funciona" className="py-16 bg-white overflow-hidden">
+    <section ref={sectionRef} id="como-funciona" className="py-16 bg-white overflow-hidden"> {/* Assign sectionRef */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Vea nuestra labor en acción</h2>

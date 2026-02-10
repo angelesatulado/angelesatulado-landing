@@ -1,7 +1,29 @@
 
-import React from 'react';
+"use client"; // Add this line
+
+import React, { useEffect } from 'react';
 
 const Header: React.FC = () => {
+  useEffect(() => {
+    const trackLeadEvent = () => {
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", { content_name: "header_button" });
+      }
+    };
+
+    // Assuming the "Agendar" button in the header is the one with target="_blank" and href="https://wa.me/18296193919"
+    const agendaButton = document.querySelector('a[href="https://wa.me/18296193919"]');
+    if (agendaButton) {
+      agendaButton.addEventListener('click', trackLeadEvent);
+    }
+
+    return () => {
+      if (agendaButton) {
+        agendaButton.removeEventListener('click', trackLeadEvent);
+      }
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
