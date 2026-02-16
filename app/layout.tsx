@@ -2,7 +2,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script'; // Ensure this is imported
-import FacebookPixel from '../components/FacebookPixel.tsx';
+import FacebookPixel from '../components/FacebookPixel';
 import ScrollDepthTracker from '../components/ScrollDepthTracker'; // Import the new component
 
 export const metadata: Metadata = {
