@@ -17,7 +17,7 @@ const services = [
   {
     title: "Monitoreo de Signos Vitales",
     desc: "Medición precisa de presión arterial y seguimiento constante de su estado de salud.",
-    img: "https://res.cloudinary.com/dg8y3x4sn/image/upload/v1770313369/ChatGPT_Image_5_feb_2026_13_42_29_g0874z.png"
+    img: "https://res.cloudinary.com/dg8y3x4sn/image/upload/v1771266621/ChatGPT_Image_16_feb_2026_13_44_27_lqnygj.png"
   }
 ];
 const CarouselSection: React.FC = () => {

@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="flex-1 relative">
               <img 
-                src="https://images.unsplash.com/photo-1542884748-2b87b36c6b90?auto=format&fit=crop&q=80&w=800" 
+                src="https://res.cloudinary.com/dg8y3x4sn/image/upload/v1771267039/ChatGPT_Image_16_feb_2026_14_36_43_rhrrux.png" 
                 alt="Personal de Ángeles a tu lado acompañando a un adulto mayor" 
                 className="rounded-[3rem] shadow-3xl border-8 border-white"
               />
@@ -75,7 +75,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="flex-1">
                <img 
-                src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=800" 
+                src="https://res.cloudinary.com/dg8y3x4sn/image/upload/v1771267346/ChatGPT_Image_16_feb_2026_14_42_07_akh8xh.png" 
                 alt="Enfermera cuidando paciente en RD" 
                 className="rounded-[3rem] shadow-3xl border-8 border-slate-50 transform -rotate-2"
                />
